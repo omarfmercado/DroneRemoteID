@@ -40,6 +40,7 @@ The following code changes are needed.
 * In `main_menu.xml`, the section defining Map Type must be uncommented
 * In `AircraftMapView.java`, in the function `changeMapType()`, the code must be uncommented
 * In `DebugActivity.java`, in the function `onCreateOptionsMenu()`, the code must be uncommented
+* Add your Google Maps API key to `Android/local.properties` as `MAPS_API_KEY=YOUR_KEY` (this file is not tracked in git)
 
 This variation system is far from ideal.
 If anyone with better Android coding skills is able to modify the code to make it easier to swap between the two different map systems, improvements would be greatly appreciated.
@@ -50,8 +51,10 @@ The sources are on purpose not delivered with a Google Maps key.
 Please generate your own key as detailed here:
 https://developers.google.com/maps/documentation/android-sdk/get-api-key
 
-Your own generated Google Maps key must be inserted in:
-`Android/app/src/main/res/values/google_maps_api.xml`
+Store your own generated Google Maps key in `Android/local.properties` as:
+`MAPS_API_KEY=YOUR_KEY`
+The build will inject that value into the `google_maps_key` string resource. Avoid committing the key; `local.properties` should remain untracked.
+It is recommended to restrict the key in Google Cloud to your package name + SHA-1 signature and to only the Maps APIs you use.
 
 ## Transmitter Devices
 

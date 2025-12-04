@@ -4,12 +4,21 @@
  * SPDX-License-Identifier: Apache-2.0
  *
  */
+import java.util.Properties
+
 apply plugin: 'com.android.application'
 android {
     def versionMajor = 3
     def versionMinor = 6
     def versionPatch = 0
     compileSdk 36
+
+    def localProps = new Properties()
+    def localPropsFile = rootProject.file("local.properties")
+    if (localPropsFile.exists()) {
+        localProps.load(localPropsFile.newDataInputStream())
+    }
+    def mapsApiKey = localProps.getProperty("MAPS_API_KEY", "")
 
     defaultConfig {
         applicationId "org.opendroneid.android"
@@ -18,6 +27,7 @@ android {
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resValue "string", "google_maps_key", mapsApiKey
     }
     buildTypes {
         debug {

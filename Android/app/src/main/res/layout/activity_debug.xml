@@ -18,7 +18,7 @@
     !-->
     <fragment
         android:id="@+id/mapView"
-        class = "org.opendroneid.android.app.AircraftOsMapView"
+        class = "org.opendroneid.android.app.AircraftMapView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
